@@ -5,9 +5,10 @@ const Gig = require('../models/Gig');
 
 //Rota padrão para /Gigs(get), foi definifo no app.js que gigs.js só é chamado quando a rota for /gigs
 router.get("/", (req, res) => 
-Gig.findAll().then(gigs => {
-    console.log(gigs);
-    res.sendStatus(200);
+Gig.findAll().then( gigs => {
+    res.render('gigs', {
+        gigs
+    });
 })
 .catch(err => console.log(err))); 
 
@@ -17,7 +18,7 @@ router.get('/add', (req, res) =>{
     const data = {
         title: "Looking for a React developer",
         technologies: "React, Javascript, HTML, CSS",
-        budget: "$3000",
+        budget: "$1000",
         description: "Lorem voluptate velit esse cillum dolore eu ",
         contact_email: "user1@gmail.com",
     }
