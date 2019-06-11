@@ -3,7 +3,7 @@ const router = express.Router();
 const db  = require("../config/database");
 const Gig = require('../models/Gig'); 
 
-//Rota padrão para /Gigs(get), foi definifo no app.js que gigs.js só é chamado quando a rota for /gigs
+//Rota padrão para /Gigs(get), foi definido no app.js que gigs.js só é chamado quando a rota for /gigs
 router.get("/", (req, res) => 
 Gig.findAll().then( gigs => {
     res.render('gigs', {
@@ -11,10 +11,11 @@ Gig.findAll().then( gigs => {
     });
 })
 .catch(err => console.log(err))); 
-
+//Display add gig form
+router.get('/add', (req, res) => res.render('add'));
 
 //Add a gig
-router.get('/add', (req, res) =>{
+router.post('/add', (req, res) =>{
     const data = {
         title: "Looking for a React developer",
         technologies: "React, Javascript, HTML, CSS",
